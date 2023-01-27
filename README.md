@@ -14,7 +14,7 @@ To get started with Authenticity, you'll need to have Node.js installed on your 
 
 1. Clone the Authenticity repository:
 ```
-git clone https://github.com/authenticity/authenticity-frontend.git
+git clone https://github.com/skarard/authenticity-frontend.git
 ```
 2. Install the dependencies:
 ```
@@ -33,8 +33,8 @@ To verify images, simply upload the image and enter the corresponding hash code.
 
 ## Contributing
 
-We welcome contributions from the community! If you would like to contribute, please see our [Contributing Guidelines](https://github.com/authenticity/authenticity-frontend/blob/master/CONTRIBUTING.md).
+We welcome contributions from the community! If you would like to contribute, please see our [Contributing Guidelines](https://github.com/skarard/authenticity-frontend/blob/master/CONTRIBUTING.md).
 
 ## License
 
-Authenticity is released under the MIT License. See [LICENSE](https://github.com/authenticity/authenticity-frontend/blob/master/LICENSE) for more details.
+Authenticity is released under the MIT License. See [LICENSE](https://github.com/skarard/authenticity-frontend/blob/master/LICENSE) for more details.
