@@ -31,10 +31,6 @@ Once the development server is running, you can open the Authenticity web app in
 
 To verify images, simply upload the image and enter the corresponding hash code. If the code is valid, the image is verified!
 
-## Contributing
-
-We welcome contributions from the community! If you would like to contribute, please see our [Contributing Guidelines](https://github.com/skarard/authenticity-frontend/blob/master/CONTRIBUTING.md).
-
 ## License
 
 Authenticity is released under the MIT License. See [LICENSE](https://github.com/skarard/authenticity-frontend/blob/master/LICENSE) for more details.
