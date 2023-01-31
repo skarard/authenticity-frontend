@@ -1,8 +1,8 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import Head from "next/head";
 import Nav from "./Nav";
-import { DefaultProps } from "../interfaces";
 import Link from "next/link";
+import { DefaultProps } from "@interfaces";
 
 export const FlexSpacer = ({ className }: { className?: string }) => (
   <div className={"flex-grow " + className} />
