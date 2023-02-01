@@ -1,6 +1,5 @@
 import React from "react";
 import { AppProps } from "next/app";
-import "../styles/index.css";
 import {
   EthereumClient,
   modalConnectors,
@@ -9,7 +8,9 @@ import {
 import { Web3Modal } from "@web3modal/react";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { arbitrum, mainnet, polygon } from "wagmi/chains";
-import config from "@config";
+import config from "config";
+import "../styles/index.css";
+import Layout from "components/Layout";
 
 const chains = [arbitrum, mainnet, polygon];
 
@@ -30,7 +31,9 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <WagmiConfig client={wagmiClient}>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </WagmiConfig>
       <Web3Modal
         projectId={config.WalletConnect.ProjectId}

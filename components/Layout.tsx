@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Nav from "./Nav";
 import Link from "next/link";
-import { DefaultProps } from "@interfaces";
+import { DefaultProps } from "interfaces";
 import WalletConnect from "./WalletConnect";
 
 export const FlexSpacer = ({ className }: { className?: string }) => (
