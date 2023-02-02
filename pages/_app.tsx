@@ -12,20 +12,23 @@ import config from "config";
 import "../styles/index.css";
 import Layout from "components/Layout";
 
-const chains = [arbitrum, mainnet, polygon];
+import { getActiveChain } from "utils";
+
+const activeChain = getActiveChain(config.WalletConnect.ActiveChain);
 
 // Wagmi client
-const { provider } = configureChains(chains, [
-  walletConnectProvider({ projectId: config.WalletConnect.ProjectId }),
-]);
+const { provider } = configureChains(
+  [activeChain],
+  [walletConnectProvider({ projectId: config.WalletConnect.ProjectId })]
+);
 const wagmiClient = createClient({
   autoConnect: true,
-  connectors: modalConnectors({ appName: "web3Modal", chains }),
+  connectors: modalConnectors({ appName: "web3Modal", chains: [activeChain] }),
   provider,
 });
 
 // Web3Modal Ethereum Client
-const ethereumClient = new EthereumClient(wagmiClient, chains);
+const ethereumClient = new EthereumClient(wagmiClient, [activeChain]);
 
 function App({ Component, pageProps }: AppProps) {
   return (
