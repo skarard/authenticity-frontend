@@ -67,7 +67,7 @@ const ImageProcessor = () => {
         disabled={!(files && files.length > 0)}
         onClick={processImages}
       >
-        Verify Images
+        Create Certificate
       </ExecuteButton>
       <FileUpload files={files} setFiles={setFiles} />
     </>
