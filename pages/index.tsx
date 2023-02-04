@@ -4,6 +4,7 @@ import ImageProcessor from "components/ImageProcessor";
 import ClientOnly from "components/ClientOnly";
 import { Box } from "@mui/system";
 import Skeleton from "@mui/material/Skeleton";
+import GenTagLine from "components/GenTagLine";
 
 const IndexPage = () => {
   const { isConnected } = useAccount();
@@ -18,7 +19,8 @@ const IndexPage = () => {
           </ClientOnly>
         </Box>
         <Box className="h-full flex flex-col basis-1/2 items-center justify-center">
-          <Skeleton variant="rectangular" width="100%" height="75%" />
+          <Skeleton variant="rectangular" width="100%" height={300} />
+          <GenTagLine />
         </Box>
       </Box>
       <FlexSpacer className="min-h-[100px]" />
