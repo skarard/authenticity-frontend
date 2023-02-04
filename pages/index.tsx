@@ -1,6 +1,5 @@
-import Layout, { FlexSpacer } from "components/Layout";
+import { FlexSpacer } from "components/Layout";
 import { useAccount } from "wagmi";
-import WalletConnect from "components/WalletConnect";
 import ImageProcessor from "components/ImageProcessor";
 import ClientOnly from "components/ClientOnly";
 import { Box } from "@mui/system";
