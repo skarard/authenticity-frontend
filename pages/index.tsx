@@ -4,7 +4,7 @@ import ImageProcessor from "components/ImageProcessor";
 import ClientOnly from "components/ClientOnly";
 import { Box } from "@mui/system";
 import Skeleton from "@mui/material/Skeleton";
-import GenTagLine from "components/GenTagLine";
+import GenTagLine from "components/GenTagline";
 
 const IndexPage = () => {
   const { isConnected } = useAccount();
