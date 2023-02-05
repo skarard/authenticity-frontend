@@ -1,6 +1,6 @@
 ---
-title: The Dangers of Deepfakes
-description: They can also be used to damage the reputation of individuals, organizations, and even countries. The increasing ease of creating deep fakes means that anyone with a computer and internet access can create false content, making it difficult to trust anything we see or hear online.
+title: Authenticity in the Age of Deep Fakes: How Blockchain is Revolutionizing Image Verification
+description: The increasing ease of creating deep fakes means that anyone with a computer and internet access can create false content, making it difficult to trust anything we see or hear online.
 isPublished: true
 publishedDate: 2023/02/05
 tags:
