@@ -4,7 +4,7 @@ description: Description for the first page
 isPublished: true
 publishedDate: 2023/02/01
 tags:
-  - next
+ - next
 ---
 
 # h1 for first page
