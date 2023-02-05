@@ -14,16 +14,17 @@ const taglines = [
   "Your ultimate tool to validate images.",
 ];
 
-const initialTagline = taglines[Math.floor(Math.random() * taglines.length)];
-
 const GenTagLine = () => {
-  const [tagline, setTagline] = useState(initialTagline);
+  const [tagline, setTagline] = useState("");
+
+  const setRandomTagline = () => {
+    const r = Math.floor(Math.random() * taglines.length);
+    setTagline(taglines[r]);
+  };
 
   useEffect(() => {
-    const timerId = setInterval(() => {
-      const r = Math.floor(Math.random() * taglines.length);
-      setTagline(taglines[r]);
-    }, 5000);
+    if (!tagline) setRandomTagline();
+    const timerId = setInterval(setRandomTagline, 5000);
     return () => clearInterval(timerId);
   }, []);
 
