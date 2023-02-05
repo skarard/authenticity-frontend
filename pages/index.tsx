@@ -1,5 +1,4 @@
 import { FlexSpacer } from "components/Layout";
-import { useAccount } from "wagmi";
 import ImageProcessor from "components/ImageProcessor";
 import ClientOnly from "components/ClientOnly";
 import { Box } from "@mui/system";
@@ -7,8 +6,6 @@ import Skeleton from "@mui/material/Skeleton";
 import GenTagLine from "components/GenTagline";
 
 const IndexPage = () => {
-  const { isConnected } = useAccount();
-
   return (
     <Box className="h-full flex flex-col">
       <FlexSpacer className="w-full max-h-48 min-h-[100px]" />
