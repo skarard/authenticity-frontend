@@ -2,6 +2,21 @@ import * as fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
+export interface BlogPost {
+  frontmatter: {
+    tags: string[];
+    publishedDate: string;
+    title: string;
+    description: string;
+    author: string;
+    image: string;
+    imageAlt: string;
+    isPublished: boolean;
+    isFeatured: boolean;
+  };
+  slug: string;
+}
+
 export const getPath = (folder: string) => {
   return path.join(process.cwd(), `/${folder}`); // Get full path
 };
@@ -13,7 +28,6 @@ export const getFileContent = (filename: string, folder: string) => {
 
 export const getAllPosts = (folder: string) => {
   const POSTS_PATH = getPath(folder);
-  console.log({ POSTS_PATH });
   return fs
     .readdirSync(POSTS_PATH) // get files in directory
     .filter((path) => /\.md?$/.test(path)) // only .md files
@@ -21,14 +35,21 @@ export const getAllPosts = (folder: string) => {
       const source = getFileContent(filename, folder); // retrieve the file contents
       const slug = filename.replace(/\.md?$/, ""); // get the slug from the filename
       const { data: frontmatter } = matter(source); // extract frontmatter
-      return { frontmatter, slug };
+      return { frontmatter, slug } as BlogPost;
     });
 };
 
 export const getAllPublished = (folder: string) => {
   const posts = getAllPosts(folder);
+  const featured = posts
+    .sort(
+      (a, b) =>
+        new Date(b.frontmatter.publishedDate).getTime() -
+        new Date(a.frontmatter.publishedDate).getTime()
+    )
+    .find((post) => post.frontmatter.isFeatured === true);
   const published = posts.filter((post) => {
-    return post.frontmatter.isPublished === true;
+    return post.frontmatter.isPublished === true && post.slug !== featured.slug;
   });
   return published;
 };
