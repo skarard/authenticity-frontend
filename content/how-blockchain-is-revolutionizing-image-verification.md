@@ -1,17 +1,20 @@
 ---
-title: Authenticity in the Age of Deep Fakes: How Blockchain is Revolutionizing Image Verification
-description: The increasing ease of creating deep fakes means that anyone with a computer and internet access can create false content, making it difficult to trust anything we see or hear online.
+title: "Authenticity in the Age of Deep Fakes: How Blockchain is Revolutionizing Image Verification"
+description: "The increasing ease of creating deep fakes means that anyone with a computer and internet access can create false content, making it difficult to trust anything we see or hear online."
+author: "Authenticity"
 isPublished: true
-publishedDate: 2023/02/05
+isFeatured: true
+publishedDate: "2023-02-05T17:55:00.000Z"
+image: ""
+imageAlt: ""
 tags:
- - deepfakes
- - ai
- - blockchain
- - solutions
- - dangerous
+- "Authenticity"
+- "Blockchain Technology"
+- "Deep Fakes"
+- "Image Verification"
+- "Misinformation"
 ---
 
-# Authenticity in the Age of Deep Fakes: How Blockchain is Revolutionizing Image Verification
 We live in an age of digital deception, where the lines between reality and fabrication are becoming increasingly blurred. Deep fakes, computer-generated images and videos that look and sound like real people, are a growing concern. The rise of deep fakes is a threat to the authenticity of information and communication, as they can be used to spread misinformation, create propaganda, and manipulate public opinion. The good news is that blockchain technology is offering a solution to this problem with a new platform called Authenticity.
 
 ## The Dangers of Deep Fakes
