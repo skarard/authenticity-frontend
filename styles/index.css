@@ -1,8 +1,30 @@
 @tailwind base;
+
+@layer base {
+  body {
+    @apply bg-[#1e3a8a] text-yellow-50 text-lg;
+  }
+
+  h1 {
+    @apply text-4xl mt-8 mb-6;
+  }
+
+  h2 {
+    @apply text-2xl mt-6 mb-4;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+
+  p {
+    @apply mb-4;
+  }
+
+  hr {
+    @apply my-16;
+  }
+}
+
 @tailwind components;
 @tailwind utilities;
-
-body {
-    background-color: #1e3a8a;
-    color: whitesmoke;
-}
