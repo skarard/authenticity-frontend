@@ -60,5 +60,17 @@ export const getSinglePost = (slug: string, folder: string) => {
   return {
     frontmatter,
     content,
-  };
+  } as BlogPost & { content: string };
+};
+
+export const getFeatured = (folder: string) => {
+  const posts = getAllPosts(folder);
+  const featured = posts
+    .sort(
+      (a, b) =>
+        new Date(b.frontmatter.publishedDate).getTime() -
+        new Date(a.frontmatter.publishedDate).getTime()
+    )
+    .find((post) => post.frontmatter.isFeatured === true);
+  return featured;
 };
