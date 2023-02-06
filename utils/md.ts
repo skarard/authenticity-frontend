@@ -41,16 +41,9 @@ export const getAllPosts = (folder: string) => {
 
 export const getAllPublished = (folder: string) => {
   const posts = getAllPosts(folder);
-  const featured = posts
-    .sort(
-      (a, b) =>
-        new Date(b.frontmatter.publishedDate).getTime() -
-        new Date(a.frontmatter.publishedDate).getTime()
-    )
-    .find((post) => post.frontmatter.isFeatured === true);
-  const published = posts.filter((post) => {
-    return post.frontmatter.isPublished === true && post.slug !== featured.slug;
-  });
+  const published = posts.filter(
+    (post) => post.frontmatter.isPublished === true
+  );
   return published;
 };
 
@@ -63,14 +56,12 @@ export const getSinglePost = (slug: string, folder: string) => {
   } as BlogPost & { content: string };
 };
 
-export const getFeatured = (folder: string) => {
-  const posts = getAllPosts(folder);
-  const featured = posts
+export const getFeatured = (posts: BlogPost[]) => {
+  return posts
     .sort(
       (a, b) =>
         new Date(b.frontmatter.publishedDate).getTime() -
         new Date(a.frontmatter.publishedDate).getTime()
     )
     .find((post) => post.frontmatter.isFeatured === true);
-  return featured;
 };

@@ -50,8 +50,9 @@ const BlogPage = ({
   );
 };
 export const getStaticProps = async () => {
-  const posts = getAllPublished("content");
-  const featured = getFeatured("content");
+  const published = getAllPublished("content");
+  const featured = getFeatured(published);
+  const posts = published.filter((post) => post.slug !== featured.slug);
   return {
     props: { posts, featured },
   };

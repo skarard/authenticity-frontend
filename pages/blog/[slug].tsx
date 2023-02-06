@@ -5,7 +5,7 @@ import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import { BlogPost, getAllPublished, getSinglePost } from "utils/md";
 
-const Post = ({ content, frontmatter }: BlogPost & { content }) => {
+const Post = ({ content, frontmatter }: BlogPost & { content: string }) => {
   return (
     <>
       <h1>{frontmatter.title}</h1>
