@@ -4,8 +4,11 @@ Authenticity is an online blockchain-based photo validation tool designed to com
 
 This is very early stages and parts maybe broken, check back regularly for updates.
 
-## Live Demo
-https://authenticity-frontend.vercel.app/
+## Project Links
+- **Live Demo** - https://authenticity-frontend.vercel.app/
+- Smart Contract Repo - https://github.com/skarard/authenticity-smart-contracts
+- SmartContractGUI - https://www.smartcontractgui.xyz/Authenticity-V1-CJPiiWMed3
+- PolygonScan - https://mumbai.polygonscan.com/address/0xABFd0922f43C6591400F30ccFae055d5e2a54122
 
 ## Getting Started
 
