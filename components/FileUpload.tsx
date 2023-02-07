@@ -9,10 +9,16 @@ import {
   IconButton,
   ImageListItem,
   ImageListItemBar,
+  styled,
+  Tooltip,
+  tooltipClasses,
+  TooltipProps,
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
+import TaskAltIcon from "@mui/icons-material/TaskAlt";
+import DoDisturbOnOutlinedIcon from "@mui/icons-material/DoDisturbOnOutlined";
 
 interface IFileUrl {
   type: string;
@@ -21,8 +27,8 @@ interface IFileUrl {
 }
 
 interface IFileUpload {
-  files: File[] | null;
-  setFiles: (e: File[] | null) => void;
+  files: (File & { hash?: string; valid?: boolean })[] | null;
+  setFiles: (e: (File & { hash?: string; valid?: boolean })[] | null) => void;
   removeRedundants?: boolean;
   disabledDragAndDrop?: boolean;
 }
@@ -36,7 +42,9 @@ export default function FileUpload({
   const [fileUrl, setFileUrl] = useState<IFileUrl[] | []>([]);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const removeRedundantFiles = (fileArray: File[]) => {
+  const removeRedundantFiles = (
+    fileArray: (File & { hash?: string; valid?: boolean })[]
+  ) => {
     const filteredFiles = fileArray.map((x) => {
       const alreadyExists = files?.find(
         (y) => x?.name === y?.name && x?.type === y?.type
@@ -46,14 +54,18 @@ export default function FileUpload({
       }
       return null;
     });
-    return filteredFiles?.filter((el) => el) as File[];
+    return filteredFiles?.filter((el) => el) as (File & {
+      hash: string;
+      valid: boolean;
+    })[];
   };
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const addedFiles = Array.from(e?.target?.files ?? []);
-    const filteredData: File[] = removeRedundants
-      ? removeRedundantFiles(addedFiles)
-      : addedFiles;
+    const addedFiles = Array.from<File & { hash?: string; valid?: boolean }>(
+      e?.target?.files ?? []
+    );
+    const filteredData: (File & { hash?: string; valid?: boolean })[] =
+      removeRedundants ? removeRedundantFiles(addedFiles) : addedFiles;
     setFiles([...(files ?? []), ...filteredData]);
   };
 
@@ -83,10 +95,10 @@ export default function FileUpload({
 
   const handleDrop = (e: any) => {
     e.preventDefault();
-    const addedFiles: File[] = Array.from(e?.dataTransfer?.files ?? []);
-    const filteredData: File[] = removeRedundants
-      ? removeRedundantFiles(addedFiles)
-      : addedFiles;
+    const addedFiles: (File & { hash?: string; valid?: boolean })[] =
+      Array.from(e?.dataTransfer?.files ?? []);
+    const filteredData: (File & { hash?: string; valid?: boolean })[] =
+      removeRedundants ? removeRedundantFiles(addedFiles) : addedFiles;
     setFiles([...(files ?? []), ...filteredData]);
   };
 
@@ -154,8 +166,8 @@ const DisplayFiles = ({
   setFiles,
 }: {
   fileUrl: IFileUrl[] | null;
-  files: File[] | null;
-  setFiles: (e: File[] | null) => void;
+  files: (File & { hash?: string; valid?: boolean })[] | null;
+  setFiles: (e: (File & { hash?: string; valid?: boolean })[] | null) => void;
 }) => {
   if (!fileUrl) {
     return <></>;
@@ -163,7 +175,7 @@ const DisplayFiles = ({
   return (
     <Grid container justifyContent="center" spacing={2}>
       {fileUrl.map((url, i) => (
-        <Grid item xs={4} key={i}>
+        <Grid item xs={12} key={i}>
           <FileComponent
             index={i}
             files={files}
@@ -183,9 +195,9 @@ const FileComponent = ({
   index,
 }: {
   url: IFileUrl;
-  files: File[] | null;
+  files: (File & { hash?: string; valid?: boolean })[] | null;
   index: number;
-  setFiles: (e: File[] | null) => void;
+  setFiles: (e: (File & { hash?: string; valid?: boolean })[] | null) => void;
 }) => {
   const changeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newFile = e?.target?.files?.[0];
@@ -209,13 +221,28 @@ const FileComponent = ({
     singleInputRef?.current?.click();
   };
 
+  const file = files[index];
+
+  const NoMaxWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  ))({
+    [`& .${tooltipClasses.tooltip}`]: {
+      maxWidth: "none",
+    },
+  });
+
   return (
     <ImageListItem
       key={url?.name}
       style={{
-        height: "25vh",
+        height: "200px",
       }}
     >
+      {file.valid !== undefined && (
+        <Box className="absolute right-0 top-0 w-full h-8">
+          {file.valid ? <TaskAltIcon /> : <DoDisturbOnOutlinedIcon />}
+        </Box>
+      )}
       <Box
         sx={{
           display: "flex",
@@ -232,14 +259,16 @@ const FileComponent = ({
           ref={singleInputRef}
           onChange={changeImage}
         />
-        <Image
-          fill
-          style={{ objectFit: "contain" }}
-          id={"d" + index}
-          src={url.src}
-          alt={url.name}
-          loading="lazy"
-        />
+        <NoMaxWidthTooltip arrow followCursor title={file.hash ?? ""}>
+          <Image
+            fill
+            style={{ objectFit: "contain" }}
+            id={"d" + index}
+            src={url.src}
+            alt={url.name}
+            loading="lazy"
+          />
+        </NoMaxWidthTooltip>
       </Box>
       <ImageListItemBar
         title={url.name}
