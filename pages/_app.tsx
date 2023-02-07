@@ -13,6 +13,7 @@ import "../styles/index.css";
 import Layout from "components/Layout";
 
 import { getActiveChain } from "utils";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const activeChain = getActiveChain(config.WalletConnect.ActiveChain);
 
@@ -30,13 +31,22 @@ const wagmiClient = createClient({
 // Web3Modal Ethereum Client
 const ethereumClient = new EthereumClient(wagmiClient, [activeChain]);
 
+// Mui
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
+
 function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <WagmiConfig client={wagmiClient}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <ThemeProvider theme={darkTheme}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
       </WagmiConfig>
       <Web3Modal
         projectId={config.WalletConnect.ProjectId}
