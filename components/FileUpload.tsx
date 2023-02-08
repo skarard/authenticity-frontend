@@ -134,6 +134,7 @@ export default function FileUpload({
           onDragOver={handleDragOver}
           height="200px"
           border="1px dashed #c3c3c3"
+          borderRadius="5px"
           display="flex"
           flexDirection="column"
           justifyContent="center"
