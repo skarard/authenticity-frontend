@@ -10,7 +10,7 @@ const IndexPage = () => {
     <Box className="h-full flex flex-col">
       <Box className="h-full flex flex-col gap-6 lg:flex-row">
         <Box className="h-full flex flex-col basis-1/2 items-center justify-center lg:order-last">
-          <Skeleton variant="rectangular" width="100%" height={300} />
+          <Skeleton variant="rounded" width="100%" height={"350px"} />
           <GenTagLine />
         </Box>
         <Box className="h-full flex flex-col basis-1/2 items-center justify-center">
