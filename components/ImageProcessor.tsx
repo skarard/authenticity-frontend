@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import config from "config";
 import { ethers } from "ethers";
 import React, { useState } from "react";
@@ -105,8 +105,8 @@ const ImageProcessor = () => {
   };
 
   return (
-    <Box>
-      <Box className="flex gap-4">
+    <Box className="flex w-full flex-col gap-6">
+      <Box className="flex gap-6">
         <Box className="flex-1">
           <ExecuteButton
             className="w-full h-full"
@@ -117,7 +117,7 @@ const ImageProcessor = () => {
             Create Proof
           </ExecuteButton>
         </Box>
-        <Box className="flex-1">
+        <Box className="flex-1 flex flex-col gap-6">
           <TextField
             className="w-full"
             onChange={(e) => setAddressList(e.target.value)}
