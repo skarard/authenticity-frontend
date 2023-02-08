@@ -238,7 +238,7 @@ const FileComponent = ({
         height: "200px",
       }}
     >
-      {file.valid !== undefined && (
+      {file?.valid !== undefined && (
         <Box className="absolute right-0 top-0 w-full h-8">
           {file.valid ? <TaskAltIcon /> : <DoDisturbOnOutlinedIcon />}
         </Box>
@@ -259,7 +259,7 @@ const FileComponent = ({
           ref={singleInputRef}
           onChange={changeImage}
         />
-        <NoMaxWidthTooltip arrow followCursor title={file.hash ?? ""}>
+        <NoMaxWidthTooltip arrow followCursor title={file?.hash ?? ""}>
           <Image
             fill
             style={{ objectFit: "contain" }}
