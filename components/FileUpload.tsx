@@ -132,7 +132,7 @@ export default function FileUpload({
           minWidth="300px"
           onDrop={handleDrop}
           onDragOver={handleDragOver}
-          height="100px"
+          height="200px"
           border="1px dashed #c3c3c3"
           display="flex"
           flexDirection="column"
