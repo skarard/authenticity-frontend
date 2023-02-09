@@ -42,3 +42,7 @@ To verify images, simply upload the image and enter the corresponding hash code.
 ## License
 
 Authenticity is released under the MIT License. See [LICENSE](https://github.com/skarard/authenticity-frontend/blob/master/LICENSE) for more details.
+
+## Members
+
+skarard & SnowShughes
