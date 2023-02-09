@@ -5,6 +5,7 @@ Authenticity is an online blockchain-based photo validation tool designed to com
 This is very early stages and parts maybe broken, check back regularly for updates.
 
 ## Project Links
+
 - **Live Demo** - https://authenticity-frontend.vercel.app/
 - Smart Contract Repo - https://github.com/skarard/authenticity-smart-contracts
 - SmartContractGUI - https://www.smartcontractgui.xyz/Authenticity-V1-CJPiiWMed3
@@ -12,7 +13,7 @@ This is very early stages and parts maybe broken, check back regularly for updat
 
 ## Getting Started
 
-These instructions will get you a copy of Authenticity up and running on your local machine for development and testing purposes. 
+These instructions will get you a copy of Authenticity up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
@@ -21,21 +22,26 @@ To get started with Authenticity, you'll need to have Node.js installed on your 
 ### Installation
 
 1. Clone the Authenticity repository:
+
 ```
 git clone https://github.com/skarard/authenticity-frontend.git
 ```
+
 2. Install the dependencies:
+
 ```
 npm install
 ```
+
 3. Start the development server:
+
 ```
 npm run dev
 ```
 
 ## Usage
 
-Once the development server is running, you can open the Authenticity web app in your browser. 
+Once the development server is running, you can open the Authenticity web app in your browser.
 
 To verify images, simply upload the image and enter the corresponding hash code. If the code is valid, the image is verified!
 
