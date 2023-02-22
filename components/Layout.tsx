@@ -18,7 +18,7 @@ const Layout = ({ children }: DefaultProps) => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <Box className="h-screen flex flex-col max-w-screen-xl mx-auto p-6">
+      <Box className="h-screen flex flex-col mx-auto p-6 bg-block-bg bg-center bg-fixed">
         <header className="mb-6 flex flew-row gap-4 justify-center items-center">
           <Link href="/">Authenticity</Link>
           <FlexSpacer />

@@ -40,6 +40,7 @@ export default function FileUpload({
   disabledDragAndDrop = false,
 }: IFileUpload) {
   const [fileUrl, setFileUrl] = useState<IFileUrl[] | []>([]);
+  const [dragHover, setDragHover] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const removeRedundantFiles = (
@@ -104,60 +105,70 @@ export default function FileUpload({
 
   const handleDragOver = (e: any) => {
     e.preventDefault();
+    setDragHover(true);
+  };
+
+  const handleDragExit = (e: any) => {
+    e.preventDefault();
+    setDragHover(false);
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <input
-        type="file"
-        ref={inputRef}
-        style={{
-          display: "none",
-        }}
-        multiple={true}
-        onChange={handleFileUpload}
-      />
-
-      {disabledDragAndDrop ? (
-        <Button
-          variant="contained"
-          onClick={openUploader}
-          sx={{ textTransform: "capitalize" }}
-        >
-          <AttachFileRoundedIcon fontSize="small" /> Upload Files
-        </Button>
-      ) : (
-        <Box
-          width="100%"
-          minWidth="300px"
-          onDrop={handleDrop}
-          onDragOver={handleDragOver}
-          height="200px"
-          border="1px dashed #c3c3c3"
-          borderRadius="5px"
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          onClick={openUploader}
+    <>
+      <Box className="w-full">
+        <input
+          type="file"
+          ref={inputRef}
           style={{
-            cursor: "pointer",
+            display: "none",
           }}
-          id="custom_drop_zone"
-        >
-          <DriveFolderUploadRoundedIcon fontSize="large" />
-          <Box className="description">
-            <strong>Choose a file</strong>
-            <Box component="span" paddingLeft="5px">
-              or drag it here{" "}
-            </Box>
+          multiple={true}
+          onChange={handleFileUpload}
+        />
+
+        {disabledDragAndDrop ? (
+          <Button
+            variant="contained"
+            onClick={openUploader}
+            sx={{ textTransform: "capitalize" }}
+          >
+            <AttachFileRoundedIcon fontSize="small" /> Upload Files
+          </Button>
+        ) : (
+          <Box
+            className="w-full h-52 flex flex-col justify-center items-center bg-inputBase/20 border-2 border-dashed border-divider rounded-xl cursor-pointer"
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragExit}
+            onClick={openUploader}
+            id="custom_drop_zone"
+          >
+            {!dragHover ? (
+              <Box className="flex flex-col gap-2 items-center">
+                <DriveFolderUploadRoundedIcon fontSize="large" />
+                <strong>Drag & Drop here</strong>
+                <Box className="mt-[-6px]" component="span">
+                  or
+                </Box>
+                <button className="bg-transparent hover:bg-lightBlueText/20 border border-divider py-2 px-4 rounded-full">
+                  <Box className="text-lightBlueText font-bold leading-tight">
+                    Browse Files
+                  </Box>
+                </button>
+              </Box>
+            ) : (
+              <Box className="flex flex-col gap-2 items-center">
+                <DriveFolderUploadRoundedIcon fontSize="large" />
+                <Box component="span">Drop it like it's hot...</Box>
+              </Box>
+            )}
           </Box>
+        )}
+        <Box sx={{ marginY: "20px" }}>
+          <DisplayFiles fileUrl={fileUrl} files={files} setFiles={setFiles} />
         </Box>
-      )}
-      <Box sx={{ marginY: "20px" }}>
-        <DisplayFiles fileUrl={fileUrl} files={files} setFiles={setFiles} />
       </Box>
-    </Box>
+    </>
   );
 }
 
