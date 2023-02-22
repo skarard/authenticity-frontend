@@ -1,4 +1,4 @@
-import { Box, TextField } from "@mui/material";
+import { Box, Divider, TextField } from "@mui/material";
 import config from "config";
 import { ethers } from "ethers";
 import React, { useState } from "react";
@@ -104,36 +104,60 @@ const ImageProcessor = () => {
     console.log({ proofArray });
   };
 
+  const [mode, setMode] = useState("Create Proof");
+
+  const switchMode = (newMode: string) => {
+    setMode(newMode);
+  };
+
   return (
-    <Box className="flex w-full flex-col gap-6">
-      <Box className="flex gap-6">
-        <Box className="flex-1">
-          <ExecuteButton
-            className="w-full h-full"
-            variant="contained"
-            disabled={!(files && files.length > 0)}
-            onClick={createProof}
-          >
-            Create Proof
-          </ExecuteButton>
-        </Box>
-        <Box className="flex-1 flex flex-col gap-6">
-          <TextField
-            className="w-full"
-            onChange={(e) => setAddressList(e.target.value)}
-            placeholder="Proof Addresses (comma delimted)"
-          />
-          <ExecuteButton
-            className="w-full"
-            variant="contained"
-            disabled={!(files && files.length > 0)}
-            onClick={validateProof}
-          >
-            Validate Proof
-          </ExecuteButton>
+    <Box className="flex flex-col gap-4 items-center">
+      <Box className="flex w-full flex-col gap-8 bg-crystal/30 p-8 rounded-xl backdrop-blur-md text-lightBlueText items-center shadow-[inset_0_1px_3px_0_rgba(255,255,255,0.3),inset_0_-1px_3px_0_rgba(1,9,31,0.6)]">
+        <Box className="text-5xl font-bold">Authenticity</Box>
+        <Box className="text-2xl">Provable authenticity for your images.</Box>
+        <Box className="w-full h-[1px] bg-divider" />
+        <FileUpload files={files} setFiles={setFiles} />
+        <Box className="flex gap-6">
+          <Box className="flex-1">
+            <ExecuteButton
+              className="w-full h-full"
+              variant="contained"
+              disabled={!(files && files.length > 0)}
+              onClick={createProof}
+            >
+              Create Proof
+            </ExecuteButton>
+          </Box>
+          <Box className="flex-1 flex flex-col gap-6">
+            <TextField
+              className="w-full"
+              onChange={(e) => setAddressList(e.target.value)}
+              placeholder="Proof Addresses (comma delimted)"
+            />
+            <ExecuteButton
+              className="w-full"
+              variant="contained"
+              disabled={!(files && files.length > 0)}
+              onClick={validateProof}
+            >
+              Validate Proof
+            </ExecuteButton>
+          </Box>
         </Box>
       </Box>
-      <FileUpload files={files} setFiles={setFiles} />
+      <button className="relative w-fit py-3 px-6 rounded-full overflow-hidden shadow-[0_2px_6px_0_rgba(0,0,0,0.25)]">
+        <Box className="relative text-2xl text-[#FFECFF]/80 font-bold leading-none pb-[3px] z-40">
+          {mode}
+        </Box>
+        {/* Inner Glow Effect */}
+        <Box className="absolute top-0 left-0 w-full h-full z-30 rounded-full shadow-[inset_0_0_2px_0_rgba(255,255,255,0.3),inset_0_1px_6px_0_rgba(255,255,255,0.25)]" />
+        {/* Vertical Gradient */}
+        <Box className="absolute top-0 left-0 w-full h-full bg-button-vertical mix-blend-overlay z-20" />
+        {/* Horizontal Gradient */}
+        <Box className="absolute top-0 left-0 w-full h-full bg-button-horizontal mix-blend-overlay z-10" />
+        {/* Background Colour */}
+        <Box className="absolute top-0 left-0 w-full h-full bg-buttonPurpleBG z-0" />
+      </button>
     </Box>
   );
 };
